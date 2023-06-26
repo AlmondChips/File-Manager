@@ -23,17 +23,17 @@ export const filesOperations = async (prompt) => {
         const fileName = prompt.substring(4);
         const resolvedPath = path.resolve(process.cwd(), fileName);
           try {
-            await fs.writeFile(resolvedPath, '', { flag: 'wx'})
+            await fsPromises.writeFile(resolvedPath, '', { flag: 'wx'})
             console.log(`${Consts.responseSign}File "${fileName}" has been successfully created at "${process.cwd()}"`);
-          } catch {
-            console.log(Consts.operationError);
+          } catch (e){
+            console.log(Consts.operationError, e);
           }
         resolve(true);
     }
     else if (prompt.startsWith('rn')) {
       try {
         const [filePath, newName] = getArgs(prompt);
-        await fs.rename(filePath, path.resolve(path.dirname(filePath), newName))
+        await fsPromises.rename(filePath, path.resolve(path.dirname(filePath), newName))
         const successMessage = `${Consts.responseSign}"${path.basename(filePath)}" file has been succsessfully renamed to "${newName}"`;
         console.log(successMessage);
       } catch {

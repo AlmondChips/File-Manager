@@ -4,16 +4,8 @@ import { parseInput } from '../utils/parseInput.js';
 import { Consts } from '../utils/consts/consts.js';
 import { drawHeader } from './header.js';
 
-import { navigationOperations } from '../handlers/navigation/navigation.js';
-import { filesOperations } from '../handlers/filesOperations/filesOperations.js';
-import { operationSystemInfo } from '../handlers/operationSystemInfo.js';
-
+import { operations } from '../utils/consts/operations.js';
 const app = async () => {
-  const operationGroupsList = [
-    navigationOperations,
-    filesOperations,
-    operationSystemInfo,
-  ]
   process.chdir( process.env['HOME']);
   let userName;
   try {
@@ -31,7 +23,7 @@ const app = async () => {
 
     let isOperationFound = false;
     
-    for (const operationGroup of operationGroupsList) {
+    for (const operationGroup of operations) {
       if(await operationGroup(prompt)) {
         isOperationFound = true;
         break;
