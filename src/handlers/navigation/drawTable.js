@@ -34,8 +34,8 @@ export const drawTable = (result) => {
   console.log(`└${drawStraightLine(...indexData)}┴${drawStraightLine(...nameData)}┴${drawStraightLine(...typeData)}┘`);
 }
 
-const drawTableLable = (lable, longestName, gap = 0) => {
-  const padding = Math.abs(lable.length - longestName.length);
+const drawTableLable = (lable, longestString, gap = 0) => {
+  const padding = Math.abs(lable.length - longestString.length);
   const isPaddingEven = padding % 2 === 0;
   const halfOfLableLength = Math.floor(padding / 2);
   return `${drawPadding(gap)}${' '.repeat(halfOfLableLength)}${lable}${' '.repeat(isPaddingEven ? halfOfLableLength : halfOfLableLength + 1 )}${drawPadding(gap)}`

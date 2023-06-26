@@ -8,6 +8,10 @@ import { drawTable } from './drawTable.js';
 export const navigationOperations = async (prompt) => {
   if (prompt === 'up') {
     const prevDir = process.cwd();
+    if (prevDir === `${process.env['HOMEDRIVE']}\\`) {
+      console.log(`${Consts.responseSign}You can't go upper`)
+      return true;
+    }
     process.chdir(path.dirname(process.cwd()));
     console.log(`${Consts.responseSign}You got upper from "${prevDir}"`)
     return true;
@@ -20,7 +24,7 @@ export const navigationOperations = async (prompt) => {
       process.chdir(resolvedPath);
 
     } catch {
-      console.log(`${Consts.responseSign}Operation failed`);
+      console.log(Consts.operationError);
     }
     return true;
   }
