@@ -1,15 +1,18 @@
 import { stdin, stdout } from 'node:process';
 import {setUpCliClose} from '../handlers/processEnd.js';
-import { navigationOperations } from '../handlers/navigation/navigation.js';
-import { filesOperations } from '../handlers/filesOperations.js';
 import { parseInput } from '../utils/parseInput.js';
 import { Consts } from '../utils/consts/consts.js';
 import { drawHeader } from './header.js';
+
+import { navigationOperations } from '../handlers/navigation/navigation.js';
+import { filesOperations } from '../handlers/filesOperations/filesOperations.js';
+import { operationSystemInfo } from '../handlers/operationSystemInfo.js';
 
 const app = async () => {
   const operationGroupsList = [
     navigationOperations,
     filesOperations,
+    operationSystemInfo,
   ]
   process.chdir( process.env['HOME']);
   let userName;
